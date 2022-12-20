@@ -4,8 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault()
         findShow(e.target.search.value)
         form.reset()
+
+        // Clear results on subsequent searches
+        const div = document.getElementById('show-list');
+        while(div.firstChild){
+            div.removeChild(div.firstChild);
+        }
     })
 })
+
+
 
 function findShow(name) {
     fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
@@ -24,18 +32,18 @@ function findShow(name) {
             showGenres = data[i].show.genres;
     
             // Add user info to the page
-            const node = document.createElement("p");
+            const node = document.createElement('p');
             node.innerHTML += `
-                <img src ="${showIcon}" style="width:200px"><br>
-                <span id = "${showName}" class = "userInfo" style = "cursor:pointer">
-                    ${showName} 
-                </span>
-                <br>${showSummary}
-                <br>Network: ${showNetwork}
-                <br>Status: ${showStatus}
-                <br>Genres: ${showGenres}
-                <br>Schedule: ${showSchedule}
-                <br> <a href="${showUrl}">Official Site</a>`;
+                <aside class = "left small-5"><img src ="${showIcon}"></aside>
+                <h1>${showName}</h1>
+                <div id = "information">${showSummary}</div>
+                <section id="general-info-panel"
+                    <br>Network: ${showNetwork}
+                    <br>Status: ${showStatus}
+                    <br>Genres: ${showGenres}
+                    <br>Schedule: ${showSchedule}
+                    <br> <a href="${showUrl}">Official Site</a>
+                </section>`;
             document.getElementById("show-list").appendChild(node);
         }
     })
@@ -45,16 +53,12 @@ function findShow(name) {
         const showList = document.querySelectorAll('span.showInfo')
         for (let x = 0; x < showList.length; x++) {
             showList[x].addEventListener("click", function() {
-                // showList[x] returned the show name with a bunch of spaces so I needed to remove the spaces
-                clickedName = showList[x].innerHTML.replace(/\s+/g, '')
                 fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
                 .then(response => response.json())
                 .then(repoResponse => {
                     for (y = 0; y < repoResponse.length; y++) {
                         let rNode = document.createElement('p')
                         rNode.innerHTML += `${repoResponse[y].name}`
-                        // We added the user name as an ID so we could target the repository listing to be below that user
-                        document.getElementById(`${clickedName}`).appendChild(rNode);
                     }
                 })
             })
