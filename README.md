@@ -1,5 +1,6 @@
 # Show Search
 Show Search is a simple app that allows you to find the shows everyone is talking about. Simply enter a search term to find shows matching the title with details on how to watch it. Show details include the network, show dates and time, whether its still running or not, genre, and a link to the show's site.
+![Show Search Results](./images/Show%20Search%20screenshot.png)
 ## Technical Details
 Show Search was created to demonstrate basic HTML, CSS, and Javascript skills including:
 - Using CSS to style site sections.
