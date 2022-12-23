@@ -15,13 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-function findShow(name) {
-    fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
+function findShow(title) {
+    fetch(`https://api.tvmaze.com/search/shows?q=${title}`)
     .then(response => response.json())
     .then(data => {
         //Promise returns an object containing items. Items are an array. This makes it easier to get to the array. 
         for (let i = 0; i < data.length; i++) {
-            // Create friendly names for each user attribute
+            // Create friendly names for each show attribute
             showName = data[i].show.name;
             showSummary = data[i].show.summary;
             showIcon = data[i].show.image.medium;
@@ -31,7 +31,7 @@ function findShow(name) {
             showStatus = data[i].show.status;
             showGenres = data[i].show.genres;
     
-            // Add user info to the page
+            // Add show info to the page
             const node = document.createElement('p');
             node.innerHTML += `
                 <aside class = "left small-5"><img src ="${showIcon}"></aside>
