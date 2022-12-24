@@ -42,7 +42,7 @@ function findShow(title) {
                     <br>Status: ${showStatus}
                     <br>Genres: ${showGenres}
                     <br>Schedule: ${showSchedule}
-                    <br> <a href="${showUrl}">Official Site</a>
+                    <br> <a href="${showUrl}" target="blank">Official Site</a>
                 </section>`;
             document.getElementById("show-list").appendChild(node);
         }
