@@ -10,6 +10,11 @@ body {
 
 .header {
     text-align: center;
+    color: white;
+    padding: 20px;
+    background-image: url("images/spotlight.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #search {
