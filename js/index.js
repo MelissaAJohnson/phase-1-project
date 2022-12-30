@@ -19,7 +19,6 @@ function findShow(title) {
     fetch(`https://api.tvmaze.com/search/shows?q=${title}`)
     .then(response => response.json())
     .then(data => {
-        //Promise returns an object containing items. Items are an array. This makes it easier to get to the array. 
         for (let i = 0; i < data.length; i++) {
             // Create friendly names for each show attribute
             showName = data[i].show.name;
