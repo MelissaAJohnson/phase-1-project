@@ -27,9 +27,23 @@ function findShow(title) {
             showIcon = data[i].show.image.medium;
             showUrl = data[i].show.officialSite;
             showNetwork = data[i].show.network.name;
-            showSchedule = `${data[i].show.schedule.days}  ${data[i].show.schedule.time}`;
+            showScheduleDays = data[i].show.schedule.days
+            showScheduleTime = convert24to12(data[i].show.schedule.time)
             showStatus = data[i].show.status;
             showGenres = data[i].show.genres;
+
+            showSchedule = `${showScheduleDays}  ${showScheduleTime}`;
+
+            function convert24to12 (time) {
+                let ampm = "AM";
+                let hours = parseInt(time.substr(0,2));
+                if (hours > 12) {
+                    ampm = "PM";
+                    hours -= 12;
+                }
+                let mins = time.substr(3,2);
+                return hours.toString().padStart(2,"0") + ":" + mins+ampm;
+            }
     
             // Add show info to the page
             const node = document.createElement('p');
