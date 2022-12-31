@@ -19,19 +19,19 @@ function findShow(title) {
     fetch(`https://api.tvmaze.com/search/shows?q=${title}`)
     .then(response => response.json())
     .then(data => {
-        for (let i = 0; i < data.length; i++) {
+        for(e in data) {
             // Create friendly names for each show attribute
-            showName = data[i].show.name;
-            showSummary = data[i].show.summary;
-            showIcon = data[i].show.image.medium;
-            showUrl = data[i].show.officialSite;
-            showNetwork = data[i].show.network.name;
-            showScheduleDays = data[i].show.schedule.days
-            showScheduleTime = convert24to12(data[i].show.schedule.time)
-            showStatus = data[i].show.status;
-            showGenres = data[i].show.genres;
+            let showName = data[e].show.name;
+            let showSummary = data[e].show.summary;
+            let showIcon = data[e].show.image.medium;
+            let showUrl = data[e].show.officialSite;
+            let showNetwork = data[e].show.network.name;
+            let showScheduleDays = data[e].show.schedule.days
+            let showScheduleTime = convert24to12(data[e].show.schedule.time)
+            let showStatus = data[e].show.status;
+            let showGenres = data[e].show.genres;
 
-            showSchedule = `${showScheduleDays}  ${showScheduleTime}`;
+            let showSchedule = `${showScheduleDays}  ${showScheduleTime}`;
 
             function convert24to12 (time) {
                 let ampm = "AM";
@@ -58,7 +58,7 @@ function findShow(title) {
                     <br> <a href="${showUrl}" target="blank">Official Site</a>
                 </section>`;
             document.getElementById("show-list").appendChild(node);
-        }
+        };
     })
 
     setTimeout(function() {
