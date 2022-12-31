@@ -61,20 +61,4 @@ function findShow(title) {
         };
     })
 
-    setTimeout(function() {
-        // When we wrote the search results, we added a class to each result. This allowed us to create an object that contained all results.
-        const showList = document.querySelectorAll('span.showInfo')
-        for (let x = 0; x < showList.length; x++) {
-            showList[x].addEventListener("click", function() {
-                fetch(`https://api.tvmaze.com/search/shows?q=${name}`)
-                .then(response => response.json())
-                .then(repoResponse => {
-                    for (y = 0; y < repoResponse.length; y++) {
-                        let rNode = document.createElement('p')
-                        rNode.innerHTML += `${repoResponse[y].name}`
-                    }
-                })
-            })
-        }
-    }, 1000)
 }
