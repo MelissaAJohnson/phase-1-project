@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const myButton = document.querySelector('.header #search button');
+    myButton.addEventListener('mouseover', function() {
+        myButton.style.backgroundColor = '#ECFFC3';
+    });
+    myButton.addEventListener('mouseout', function() {
+        myButton.style.backgroundColor = 'white';
+    })
+
     const form = document.querySelector('form')
     form.addEventListener('submit', (e) => {
         e.preventDefault()
