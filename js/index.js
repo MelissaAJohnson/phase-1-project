@@ -50,14 +50,13 @@ function showResults(arr) {
         const node = document.createElement('p');
         node.innerHTML += `
             <aside class = "left small-5"><img src ="${show.image.medium}"></aside>
-            <h1>${show.name}</h1>
+            <h1><a href="${show.officialSite}" target="blank">${show.name}</a></h1>
             <div id = "information">${show.summary}</div>
             <section id="general-info-panel"
                 <br>Network: ${show.network.name}
                 <br>Status: ${show.status}
                 <br>Genres: ${show.genres}
                 <br>Schedule: ${showSchedule}
-                <br> <a href="${show.officialSite}" target="blank">Official Site</a>
             </section>`;
         document.getElementById("show-list").appendChild(node);
     })

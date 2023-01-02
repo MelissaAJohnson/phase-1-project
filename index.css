@@ -8,6 +8,10 @@ body {
     color: #0a0a0a;
 }
 
+a {
+    text-decoration: none;
+}
+
 .header {
     text-align: center;
     color: white;
