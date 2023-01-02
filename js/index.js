@@ -36,8 +36,15 @@ function findShow(title) {
 function showResults(arr) {
     arr.forEach(show => {
         // Format show schedule
-        convert24to12(show.schedule.time);
-        let showSchedule = `${show.schedule.days}  ${convertedTime}`
+        console.log(show.schedule.time);
+        let showSchedule;
+        if (isNaN(show.schedule.time)) {
+            convert24to12(show.schedule.time);
+            showSchedule = `${show.schedule.days}  ${convertedTime}`
+            console.log(showSchedule)
+        } else {
+            showSchedule = ' ';
+        };
 
         // Add show info to the page
         const node = document.createElement('p');
