@@ -27,7 +27,7 @@ function findShow(title) {
 
 function showResults(arr) {
     arr.forEach(show => {
-        // let showName = show.name;
+        // Format show schedule
         convert24to12(show.schedule.time);
         let showSchedule = `${show.schedule.days}  ${show.schedule.time}`
 
@@ -45,7 +45,6 @@ function showResults(arr) {
                 <br> <a href="${show.officialSite}" target="blank">Official Site</a>
             </section>`;
         document.getElementById("show-list").appendChild(node);
-        
     })
 }
 
