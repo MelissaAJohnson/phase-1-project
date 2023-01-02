@@ -10,6 +10,6 @@ Show Search was created to demonstrate basic HTML, CSS, and Javascript skills in
 - Using Javascript object iteration to manipulate the DOM to display search results.
 ## Known Issues
 Because this is an MVP release, there a number of issues you may encounter.
-- If the show summary is multiple paragrahs, it will cause summary paragraphs to wrap under the show image.
+- If the show summary is multiple paragraphs, it will cause summary paragraphs to wrap under the show image.
 - Searching by actors could be added.
 - It would be helpful to display show ratings in a graphical format.
