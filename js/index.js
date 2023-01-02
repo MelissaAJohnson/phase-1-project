@@ -57,7 +57,8 @@ function showResults(arr) {
                 <br>Status: ${show.status}
                 <br>Genres: ${show.genres}
                 <br>Schedule: ${showSchedule}
-            </section>`;
+            </section>
+            <hr>`;
         document.getElementById("show-list").appendChild(node);
     })
 }
