@@ -29,7 +29,7 @@ function showResults(arr) {
     arr.forEach(show => {
         // Format show schedule
         convert24to12(show.schedule.time);
-        let showSchedule = `${show.schedule.days}  ${show.schedule.time}`
+        let showSchedule = `${show.schedule.days}  ${convertedTime}`
 
         // Add show info to the page
         const node = document.createElement('p');
@@ -56,5 +56,6 @@ function convert24to12 (time) {
         hours -= 12;
     }
     let mins = time.substr(3,2);
-    return hours.toString().padStart(2,"0") + ":" + mins+ampm;
+    convertedTime = hours.toString().padStart(2,"0") + ":" + mins+ampm;
+    return convertedTime;
 }
