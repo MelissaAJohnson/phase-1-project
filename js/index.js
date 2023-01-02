@@ -13,52 +13,49 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
-
-
 function findShow(title) {
     fetch(`https://api.tvmaze.com/search/shows?q=${title}`)
     .then(response => response.json())
     .then(data => {
-        for(e in data) {
-            // Create friendly names for each show attribute
-            let showName = data[e].show.name;
-            let showSummary = data[e].show.summary;
-            let showIcon = data[e].show.image.medium;
-            let showUrl = data[e].show.officialSite;
-            let showNetwork = data[e].show.network.name;
-            let showScheduleDays = data[e].show.schedule.days
-            let showScheduleTime = convert24to12(data[e].show.schedule.time)
-            let showStatus = data[e].show.status;
-            let showGenres = data[e].show.genres;
-
-            let showSchedule = `${showScheduleDays}  ${showScheduleTime}`;
-
-            function convert24to12 (time) {
-                let ampm = "AM";
-                let hours = parseInt(time.substr(0,2));
-                if (hours > 12) {
-                    ampm = "PM";
-                    hours -= 12;
-                }
-                let mins = time.substr(3,2);
-                return hours.toString().padStart(2,"0") + ":" + mins+ampm;
-            }
-    
-            // Add show info to the page
-            const node = document.createElement('p');
-            node.innerHTML += `
-                <aside class = "left small-5"><img src ="${showIcon}"></aside>
-                <h1>${showName}</h1>
-                <div id = "information">${showSummary}</div>
-                <section id="general-info-panel"
-                    <br>Network: ${showNetwork}
-                    <br>Status: ${showStatus}
-                    <br>Genres: ${showGenres}
-                    <br>Schedule: ${showSchedule}
-                    <br> <a href="${showUrl}" target="blank">Official Site</a>
-                </section>`;
-            document.getElementById("show-list").appendChild(node);
-        };
+        let showArray = [];
+        for (e in data) {
+            showArray.push(data[e].show)
+        }
+        showResults(showArray);
     })
+}
 
+function showResults(arr) {
+    arr.forEach(show => {
+        // let showName = show.name;
+        convert24to12(show.schedule.time);
+        let showSchedule = `${show.schedule.days}  ${show.schedule.time}`
+
+        // Add show info to the page
+        const node = document.createElement('p');
+        node.innerHTML += `
+            <aside class = "left small-5"><img src ="${show.image.medium}"></aside>
+            <h1>${show.name}</h1>
+            <div id = "information">${show.summary}</div>
+            <section id="general-info-panel"
+                <br>Network: ${show.network.name}
+                <br>Status: ${show.status}
+                <br>Genres: ${show.genres}
+                <br>Schedule: ${showSchedule}
+                <br> <a href="${show.officialSite}" target="blank">Official Site</a>
+            </section>`;
+        document.getElementById("show-list").appendChild(node);
+        
+    })
+}
+
+function convert24to12 (time) {
+    let ampm = "AM";
+    let hours = parseInt(time.substr(0,2));
+    if (hours > 12) {
+        ampm = "PM";
+        hours -= 12;
+    }
+    let mins = time.substr(3,2);
+    return hours.toString().padStart(2,"0") + ":" + mins+ampm;
 }
